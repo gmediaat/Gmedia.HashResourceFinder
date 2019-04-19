@@ -1,0 +1,19 @@
+{
+    "description": "Finds js, css, and other resource files while ignoring the hash.",
+    "type": "neos-plugin",
+    "name": "gmedia/hash-resource-finder",
+    "require": {
+        "neos/flow": "*",
+        "neos/fusion-afx": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gmedia\\HashResourceFinder\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Gmedia.HashResourceFinder"
+        }
+    }
+}

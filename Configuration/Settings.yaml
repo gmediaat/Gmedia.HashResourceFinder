@@ -1,0 +1,8 @@
+Neos:
+  Fusion:
+    defaultContext:
+      Resource: Gmedia\HashResourceFinder\EelHelper\HashResourceFileHelper
+  Neos:
+    fusion:
+      autoInclude:
+        Gmedia.HashResourceFinder: true

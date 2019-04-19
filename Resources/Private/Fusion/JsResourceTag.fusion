@@ -1,0 +1,20 @@
+prototype(Gmedia.HashResourceFinder:JsResourceTag) < prototype(Neos.Fusion:Component) {
+
+	@context {
+		fileName = ${this.fileName}
+		packageName = ${this.packageName}
+	}
+
+	src = ${Resource.get(fileName, packageName)}
+
+	renderer = afx`
+		<script src={props.src}></script>
+	`
+
+	@cache {
+		mode = 'uncached'
+		context {
+			documentNode = 'documentNode'
+		}
+	}
+}

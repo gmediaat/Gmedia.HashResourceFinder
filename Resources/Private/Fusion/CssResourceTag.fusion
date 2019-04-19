@@ -1,0 +1,20 @@
+prototype(Gmedia.HashResourceFinder:CssResourceTag) < prototype(Neos.Fusion:Component) {
+
+	@context {
+		fileName = ${this.fileName}
+		packageName = ${this.packageName}
+	}
+
+	href = ${Resource.get(fileName, packageName)}
+
+	renderer = afx`
+		<link type="text/css" rel="stylesheet" href={props.href} />
+	`
+
+	@cache {
+		mode = 'uncached'
+		context {
+			documentNode = 'documentNode'
+		}
+	}
+}
