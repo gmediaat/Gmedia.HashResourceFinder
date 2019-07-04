@@ -5,7 +5,7 @@ prototype(Gmedia.HashResourceFinder:CssResourceTag) < prototype(Neos.Fusion:Comp
 		packageName = ${this.packageName}
 	}
 
-	href = ${Resource.get(fileName, packageName)}
+	href = ${Resource.getPublicUri(fileName, packageName)}
 
 	renderer = afx`
 		<link type="text/css" rel="stylesheet" href={props.href} />

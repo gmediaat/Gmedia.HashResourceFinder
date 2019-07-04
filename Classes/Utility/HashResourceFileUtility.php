@@ -29,32 +29,55 @@ class HashResourceFileUtility {
      * @throws Package\Exception\UnknownPackageException
      */
     public function getFile($fileNamePattern, $packageName) {
-        if(strpos($fileNamePattern, '.') !== false && strpos($packageName, '.') !== false) {
+        return $this->getPublicUri($fileNamePattern, $packageName);
+    }
 
+    /**
+     * @param string $fileNamePattern
+     * @param string $packageName
+     * @return string
+     */
+    public function getResourceUri($fileNamePattern, $packageName) {
+        if(strpos($fileNamePattern, '.') !== false && strpos($packageName, '.') !== false) {
             $needle = explode('.', $fileNamePattern)[0];
             $extension = explode('.', $fileNamePattern)[1];
 
             /** @var Package $package */
             $package = $this->packageManager->getPackage($packageName);
             $resourcesFolder = Files::concatenatePaths([$package->getResourcesPath(), 'Public/Compiled/']);
-            $matchingFiles = glob($resourcesFolder . '/' . $needle . '*.' . $extension);
+            $matchingFiles = glob($resourcesFolder . '/' . $needle . '.*.' . $extension);
 
-            $resource = '';
+            $path = '';
             foreach ($matchingFiles as $filePath) {
                 $file = basename($filePath);
                 if (strpos($file, $needle) === 0) {
                     $path = sprintf('resource://%s/Public/Compiled/%s', $packageName, $file);
-                    $resource = $this->resourceManager->getPublicPackageResourceUriByPath($path);
                     break;
                 }
             }
 
             // TODO maybe throw exception when no file is found
-            return $resource;
+            return $path;
         } else {
             // TODO maybe throw exception that parameters are wrong
             return '';
         }
+    }
+
+    /**
+     * @param string $fileNamePattern
+     * @param string $packageName
+     * @return string
+     */
+    public function getPublicUri($fileNamePattern, $packageName) {
+        $resourcePath = $this->getResourceUri($fileNamePattern, $packageName);
+
+        $publicUri = '';
+        if(strlen($resourcePath) > 0) {
+            $publicUri = $this->resourceManager->getPublicPackageResourceUriByPath($resourcePath);
+        }
+
+        return $publicUri;
     }
 
 }

@@ -28,9 +28,28 @@ class HashResourceFileHelper implements ProtectedContextAwareInterface
      * @param string $fileNamePattern
      * @param string $packageName
      * @return string
+     * @deprecated
      */
     public function get($fileNamePattern, $packageName) {
         return $this->hashResourceFileUtility->getFile($fileNamePattern, $packageName);
+    }
+
+    /**
+     * @param $fileNamePattern
+     * @param $packageName
+     * @return string
+     */
+    public function getResourceUri($fileNamePattern, $packageName) {
+        return $this->hashResourceFileUtility->getResourceUri($fileNamePattern, $packageName);
+    }
+
+    /**
+     * @param $fileNamePattern
+     * @param $packageName
+     * @return string
+     */
+    public function getPublicUri($fileNamePattern, $packageName) {
+        return $this->hashResourceFileUtility->getPublicUri($fileNamePattern, $packageName);
     }
 
     /**

@@ -5,7 +5,7 @@ prototype(Gmedia.HashResourceFinder:JsResourceTag) < prototype(Neos.Fusion:Compo
 		packageName = ${this.packageName}
 	}
 
-	src = ${Resource.get(fileName, packageName)}
+	src = ${Resource.getPublicUri(fileName, packageName)}
 
 	renderer = afx`
 		<script src={props.src}></script>

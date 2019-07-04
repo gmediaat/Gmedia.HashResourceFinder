@@ -1,0 +1,16 @@
+prototype(Gmedia.HashResourceFinder:CssResourceInline) < prototype(Neos.Fusion:Tag) {
+
+	fileName = ''
+	packageName = ''
+
+	@context {
+		fileName = ${this.fileName}
+		packageName = ${this.packageName}
+	}
+
+	tagName = 'style'
+	content = Neos.Fusion:Template {
+		templatePath = ${Resource.getResourceUri(fileName, packageName)}
+	}
+
+}

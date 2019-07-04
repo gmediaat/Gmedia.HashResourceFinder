@@ -1,0 +1,16 @@
+prototype(Gmedia.HashResourceFinder:JsResourceInline) < prototype(Neos.Fusion:Tag) {
+
+	fileName = ''
+	packageName = ''
+
+	@context {
+		fileName = ${this.fileName}
+		packageName = ${this.packageName}
+	}
+
+	tagName = 'script'
+	content = Neos.Fusion:Template {
+		templatePath = ${Resource.getResourceUri(fileName, packageName)}
+	}
+
+}
