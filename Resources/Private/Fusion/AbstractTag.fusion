@@ -1,0 +1,24 @@
+prototype(Gmedia.HashResourceFinder:AbstractTag) < prototype(Neos.Fusion:Component) {
+
+	# Fallback tagName
+	tagName = 'link'
+	content = null
+	attributes = Neos.Fusion:Attributes
+
+	renderer = Neos.Fusion:Tag {
+		tagName = ${props.tagName}
+
+		# Apply all props as attributes
+		attributes = Neos.Fusion:Attributes {
+			href = ${props.href}
+			href.@if.hasAttr = ${props.href}
+
+			src = ${props.src}
+			src.@if.hasAttr = ${props.src}
+
+			@apply.props = ${props.attributes}
+		}
+
+	 	content = ${props.content}
+	}
+}
