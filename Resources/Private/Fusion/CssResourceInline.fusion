@@ -1,16 +1,19 @@
-prototype(Gmedia.HashResourceFinder:CssResourceInline) < prototype(Neos.Fusion:Tag) {
+prototype(Gmedia.HashResourceFinder:CssResourceInline) < prototype(Neos.Fusion:Component) {
 
 	fileName = ''
 	packageName = ''
+	attributes = Neos.Fusion:RawArray
 
-	@context {
-		fileName = ${this.fileName}
-		packageName = ${this.packageName}
+	renderer = afx`
+		<Gmedia.HashResourceFinder:AbstractTag tagName="style" {...props.attributes}>
+			<Neos.Fusion:Template templatePath={Resource.getResourceUri(props.fileName, props.packageName)} />
+		</Gmedia.HashResourceFinder:AbstractTag>
+	`
+
+	@cache {
+		mode = 'uncached'
+		context {
+			documentNode = 'documentNode'
+		}
 	}
-
-	tagName = 'style'
-	content = Neos.Fusion:Template {
-		templatePath = ${Resource.getResourceUri(fileName, packageName)}
-	}
-
 }

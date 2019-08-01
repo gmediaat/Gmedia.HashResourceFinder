@@ -1,14 +1,11 @@
 prototype(Gmedia.HashResourceFinder:JsResourceTag) < prototype(Neos.Fusion:Component) {
 
-	@context {
-		fileName = ${this.fileName}
-		packageName = ${this.packageName}
-	}
-
-	src = ${Resource.getPublicUri(fileName, packageName)}
+	fileName = ''
+	packageName = ''
+	attributes = Neos.Fusion:RawArray
 
 	renderer = afx`
-		<script src={props.src}></script>
+		<Gmedia.HashResourceFinder:AbstractTag {...props.attributes} tagName="script" src={Resource.getPublicUri(props.fileName, props.packageName)} />
 	`
 
 	@cache {

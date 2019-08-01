@@ -1,14 +1,14 @@
 prototype(Gmedia.HashResourceFinder:CssResourceTag) < prototype(Neos.Fusion:Component) {
 
-	@context {
-		fileName = ${this.fileName}
-		packageName = ${this.packageName}
+	fileName = ''
+	packageName = ''
+	attributes = Neos.Fusion:RawArray {
+		type = "text/css"
+		rel = 'stylesheet'
 	}
 
-	href = ${Resource.getPublicUri(fileName, packageName)}
-
 	renderer = afx`
-		<link type="text/css" rel="stylesheet" href={props.href} />
+		<Gmedia.HashResourceFinder:AbstractTag attributes={props.attributes} tagName="link" href={Resource.getPublicUri(props.fileName, props.packageName)} />
 	`
 
 	@cache {

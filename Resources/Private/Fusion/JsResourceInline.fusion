@@ -1,16 +1,19 @@
-prototype(Gmedia.HashResourceFinder:JsResourceInline) < prototype(Neos.Fusion:Tag) {
+prototype(Gmedia.HashResourceFinder:JsResourceInline) < prototype(Neos.Fusion:Component) {
 
 	fileName = ''
 	packageName = ''
+	attributes = Neos.Fusion:RawArray
 
-	@context {
-		fileName = ${this.fileName}
-		packageName = ${this.packageName}
+	renderer = afx`
+		<Gmedia.HashResourceFinder:AbstractTag {...props.attributes} tagName="script">
+			<Neos.Fusion:Template templatePath={Resource.getResourceUri(props.fileName, props.packageName)} />
+		</Gmedia.HashResourceFinder:AbstractTag>
+	`
+
+	@cache {
+		mode = 'uncached'
+		context {
+			documentNode = 'documentNode'
+		}
 	}
-
-	tagName = 'script'
-	content = Neos.Fusion:Template {
-		templatePath = ${Resource.getResourceUri(fileName, packageName)}
-	}
-
 }
