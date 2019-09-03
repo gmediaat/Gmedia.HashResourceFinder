@@ -5,7 +5,7 @@ prototype(Gmedia.HashResourceFinder:CssResourceInline) < prototype(Neos.Fusion:C
 	attributes = Neos.Fusion:RawArray
 
 	renderer = afx`
-		<Gmedia.HashResourceFinder:AbstractTag tagName="style" {...props.attributes}>
+		<Gmedia.HashResourceFinder:AbstractTag tagName="style" attributes={props.attributes}>
 			<Neos.Fusion:Template templatePath={Resource.getResourceUri(props.fileName, props.packageName)} />
 		</Gmedia.HashResourceFinder:AbstractTag>
 	`

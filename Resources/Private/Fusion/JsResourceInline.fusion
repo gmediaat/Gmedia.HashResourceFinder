@@ -5,7 +5,7 @@ prototype(Gmedia.HashResourceFinder:JsResourceInline) < prototype(Neos.Fusion:Co
 	attributes = Neos.Fusion:RawArray
 
 	renderer = afx`
-		<Gmedia.HashResourceFinder:AbstractTag {...props.attributes} tagName="script">
+		<Gmedia.HashResourceFinder:AbstractTag attributes={props.attributes} tagName="script">
 			<Neos.Fusion:Template templatePath={Resource.getResourceUri(props.fileName, props.packageName)} />
 		</Gmedia.HashResourceFinder:AbstractTag>
 	`

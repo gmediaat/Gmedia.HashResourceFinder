@@ -5,7 +5,7 @@ prototype(Gmedia.HashResourceFinder:JsResourceTag) < prototype(Neos.Fusion:Compo
 	attributes = Neos.Fusion:RawArray
 
 	renderer = afx`
-		<Gmedia.HashResourceFinder:AbstractTag {...props.attributes} tagName="script" src={Resource.getPublicUri(props.fileName, props.packageName)} />
+		<Gmedia.HashResourceFinder:AbstractTag attributes={props.attributes} tagName="script" src={Resource.getPublicUri(props.fileName, props.packageName)} />
 	`
 
 	@cache {
